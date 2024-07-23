@@ -1,0 +1,146 @@
+<!-- <div class="row">
+    <h1>List exam toeic</h1>
+</div>
+
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let examToeic of examToeics"
+        [routerLink]="['/toeic/detail-toeic', examToeic.id]">{{examToeic.title}}</li> -->
+<!-- <li class="list-group-item">A second item</li>
+    <li class="list-group-item">A third item</li>
+    <li class="list-group-item">A fourth item</li>
+    <li class="list-group-item">And a fifth one</li> -->
+<!-- </ul> -->
+
+
+
+<div class="container">
+    <div class="row mb-3">
+        <div class="col text-center">
+            <h2>Thư viện đề thi</h2>
+        </div>
+    </div>
+
+    <!-- Nút chọn loại đề thi -->
+    <div class="row mb-3 justify-content-center back-color">
+        <div class="col-lg-8">
+            <div class="d-flex flex-wrap" role="group" aria-label="Exam categories">
+                <button type="button" class="btn btn-primary  me-2 mb-2">Tất cả</button>
+                <button type="button" class="btn btn-outline-primary  me-2 mb-2 custom-cate" [style.background]="gradientColors[1]">IELTS Academic</button>
+                <button type="button" class="btn btn-outline-primary  me-2 mb-2 custom-cate" [style.background]="gradientColors[2]">IELTS Academic</button>
+                <button type="button" class="btn btn-outline-primary  me-2 mb-2 custom-cate" [style.background]="gradientColors[3]">IELTS Academic</button>
+                <button type="button" class="btn btn-outline-primary  me-2 mb-2 custom-cate" [style.background]="gradientColors[4]">IELTS Academic</button>
+                <button type="button" class="btn btn-outline-primary  me-2 mb-2 custom-cate" [style.background]="gradientColors[5]">IELTS Academic</button>
+                <button type="button" class="btn btn-outline-primary  me-2 mb-2 custom-cate" [style.background]="gradientColors[1]">IELTS Academic</button>
+                <button type="button" class="btn btn-outline-primary  me-2 mb-2 custom-cate" [style.background]="gradientColors[7]">IELTS Academic</button>
+                <button type="button" class="btn btn-outline-primary  me-2 mb-2 custom-cate" [style.background]="gradientColors[6]">IELTS Academic</button>
+                <button type="button" class="btn btn-outline-primary  me-2 mb-2 custom-cate" [style.background]="gradientColors[2]">IELTS Academic</button>
+                <button type="button" class="btn btn-outline-primary  me-2 mb-2 custom-cate" [style.background]="gradientColors[3]">IELTS Academic</button>
+                <button type="button" class="btn btn-outline-primary  me-2 mb-2 custom-cate" [style.background]="gradientColors[4]">IELTS Academic</button>
+                <button type="button" class="btn btn-outline-primary  me-2 mb-2 custom-cate" [style.background]="gradientColors[5]">IELTS Academic</button>
+                <button type="button" class="btn btn-outline-primary  me-2 mb-2 custom-cate" [style.background]="gradientColors[1]">IELTS Academic</button>
+                <button type="button" class="btn btn-outline-primary  me-2 mb-2 custom-cate" [style.background]="gradientColors[2]">IELTS Academic</button>
+                <button type="button" class="btn btn-outline-primary  me-2 mb-2 custom-cate" [style.background]="gradientColors[3]">IELTS Academic</button>
+            </div>
+        </div>
+
+        <!-- thong tin nguoi dung -->
+        <div class="col-lg-4" *ngIf="userCurrent">
+            <div class="card">
+                <div class="card-body pb-4 border-bottom">
+                    <div class="d-flex align-items-center mb-3">
+                        <img [src]="baseImageUrl+userCurrent.avatarUrl" class="rounded-circle me-2" alt="Avatar"
+                            style="width: 50px; height: 50px;">
+                        <h5 class="card-title mb-0">{{userCurrent.email}}</h5>
+                    </div>
+                    <p class="card-text text-secondary" style="font-size: 0.875rem;">Bạn chưa tạo mục tiêu cho quá trình
+                        luyện thi của mình. Tạo ngay.</p>
+                </div>
+                <div class="card-body">
+                    <a href="/toeic/toeic-result" class="btn btn-primary">Thông kê kết quả</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thanh tìm kiếm -->
+    <div class="row mb-4">
+        <div class="col-lg-8">
+            <div class="input-group">
+                <input type="text" class="form-control" [(ngModel)]="search.title" name="title"
+                    placeholder="Nhập từ khóa bạn muốn tìm kiếm: tên đề, danh mục câu hỏi ...">
+                <button class="btn btn-secondary" type="button" (click)="onSearchChange()">Tìm kiếm</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row  pt-5 pb-5 ">
+        <a class="col-md-3 mb-3 a-custom" *ngFor="let examToeic of examToeics"
+            [routerLink]="['/toeic/detail-toeic', examToeic.id]">
+            <div class="card card-custom">
+                <div class="card-top" [style.background]="examToeic.color">{{examToeic.title}}®</div>
+                <div class="card-bottom">
+                    <div class="item py-2 ">
+                        <i class="fa-solid fa-d"></i>
+                        <span>Mô tả tranh</span>
+                    </div>
+                    <div class="item py-2">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>{{examToeic.duration}}</span>
+                    </div>
+                    <div class="item py-2">
+                        <i class="fa-solid fa-circle-question"></i>
+                        <span>200 câu hỏi</span>
+                    </div>
+                    <div class="item py-2">
+                        <i class="fa-solid fa-list-ol"></i>
+                        <span>7 part</span>
+                    </div>
+                    <div class="item py-2">
+                        <i class="fa-solid fa-eye"></i>
+                        <span>{{examToeic.view}} lượt xem</span>
+                    </div>
+                    <div *ngIf="examToeic.isTest" class="continue-btn">Continue</div>
+                </div>
+                <div class="card-footer">
+                    <div class="card-footer-progress">
+                        <progress class="progress" max="26" value="0"></progress>
+                    </div>
+                    <div class="number-testing">
+                        <span class="total">{{examToeic.questionTesting?examToeic.questionTesting:0}}/26</span>
+                        <span class="text">bài hoàn thành
+                        </span>
+                    </div>
+                    <div>
+                        {{examToeic.isTest}}
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+
+<div class="row d-flex justify-content-center align-items-center mt-4">
+    <div class="col">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li [class.page-item]="true" [class.disabled]="currentPage === 1"
+                    (click)="currentPage > 1 ? handleOnChangePage(currentPage - 1) : null">
+                    <a class="page-link" [attr.tabindex]="currentPage === 1 ? '-1' : '0'"
+                        [attr.aria-disabled]="currentPage === 1 ? 'true' : 'false'">Previous</a>
+                </li>
+                <!-- <li class="page-item"><a class="page-link">1</a></li>
+                <li class="page-item"><a class="page-link">2</a></li>
+                <li class="page-item"><a class="page-link">3</a></li> -->
+                <li *ngFor="let page of pages" class="page-item" (click)="handleOnChangePage(page)">
+                    <a class="page-link">{{page}}</a>
+                </li>
+
+                <li class="page-item" (click)="handleOnChangePage(currentPage+1)">
+                    <a class="page-link">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

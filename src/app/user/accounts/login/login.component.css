@@ -1,0 +1,49 @@
+.modal-content {
+  border-radius: 0.5rem;
+}
+
+.modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.modal-footer {
+  border-top: 1px solid #dee2e6;
+  background-color: #f8f9fa;
+}
+
+.btn-close {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+
+.modal-dialog-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.modal-content {
+  width: 100%;
+  width:  1000px;
+  margin: auto;
+}
+
+.modal-dialog {
+  display: flex;
+  justify-content: center;
+}
+
+
+/* toast start */
+.toast-title {
+  margin-left: 25px !important;
+
+}
+
+/* end toast */
+
+

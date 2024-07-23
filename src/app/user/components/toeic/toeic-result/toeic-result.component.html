@@ -1,0 +1,64 @@
+<div *ngIf="userCurrent">
+	<div class="container mt-3" *ngIf="false">
+		<div class="row">
+			<div class="col-12 mb-3" *ngFor="let result of examToeicResults">
+				<div class="card">
+					<a class="row border-0 text-dark text-decoration-none"
+						href="/toeic/toeic-result-detail/{{result.id}}">
+						<div class="col-md-6">
+							<div class="card-body">
+								<p class="card-text"> {{ result.examToeic.title }}</p>
+								<!-- <h5 class="card-title">Exam Result for: {{ userCurrent.name }}</h5> -->
+								<span class="badge" [ngClass]="{
+					' badge-primary':result.score>=(result.examToeicResultDetails.length+1)/2,
+					' badge-danger': result.score<(result.examToeicResultDetails.length+1)/2,
+					}">Score: {{ result.score }}/{{result.examToeicResultDetails.length}}đ</span>
+								<!-- <p class="card-text">Number of Correct Answers: {{ result.numberCorrectOverallAnswers }}</p> -->
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="card-body">
+								<!-- <p class="card-text">Start Time: {{ result.startTime | date:'medium' }}</p> -->
+								<!-- <p class="card-text">Duration: {{ result.durationTime }}</p> -->
+								<!-- <p class="card-text">Number of Tab Changes: {{ result.numberChangeTab }}</p> -->
+								<span class="badge badge-secondary ">{{convertTimeToRelative(result.startTime)}}</span>
+
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container mt-5">
+		<div class="accordion" id="examAccordion">
+			<div class="accordion-item" *ngFor="let group of groupedResults; let i = index">
+				<h2 class="accordion-header" id="heading{{i}}">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+						[attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
+						[attr.aria-controls]="'collapse' + i">
+						{{ group[0]?.examToeic.title }}
+					</button>
+				</h2>
+				<div id="collapse{{i}}" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading' + i"
+					data-bs-parent="#examAccordion">
+					<div class="accordion-body">
+						<ul class="list-group">
+							<li class="list-group-item" *ngFor="let exam of group"
+								routerLink="/toeic/toeic-result-detail/{{exam.id}}">
+								Lần thi: {{ exam.times }} - Ngày thi: {{ exam.createdAt | date:'mediumDate' }}
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div *ngIf="!userCurrent" class="d-flex justify-content-center align-items-center vh-100">
+	<div class="text-center">
+		<h1>Không có bản ghi nào</h1>
+	</div>
+</div>

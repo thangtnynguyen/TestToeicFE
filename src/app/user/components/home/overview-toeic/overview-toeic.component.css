@@ -1,0 +1,41 @@
+#introduction {
+    margin-top: 100px;
+    position: relative;
+    z-index: 1;
+    font-family: inherit !important;
+    padding: 48px;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, .078);
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+
+}
+
+h2{
+    font-family: SVN-Poppins, sans-serif;
+    font-size: 20px;
+    font-weight: 1000;
+}
+
+h3{
+    font-family: SVN-Poppins, sans-serif;
+    font-size: 15px;
+    font-weight: 1000;
+}
+p{
+    font-family: SVN-Poppins, sans-serif;
+    font-size: 13px;
+}
+
+#introduction .btn-show-content {
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    color: #2CA6EB;
+}

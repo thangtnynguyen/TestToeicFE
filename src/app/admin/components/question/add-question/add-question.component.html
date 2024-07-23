@@ -1,0 +1,163 @@
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0">Thêm câu hỏi</h4>
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li routerLink="/admin/dashboard" class="breadcrumb-item d-flex align-items-center">
+                        <span>Trang chủ</span>
+                        <i class="breadcrumb-item-arrow fa-solid fa-angle-right"></i>
+                    </li>
+                    <li routerLink="/admin/question" class="breadcrumb-item d-flex align-items-center">
+                        <span>Quản lý câu hỏi</span>
+                        <i class="breadcrumb-item-arrow fa-solid fa-angle-right"></i>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        <span> Thêm câu hỏi </span>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <form (ngSubmit)="onSubmit()" #form="ngForm">
+                    <!-- <div class="form-group">
+                    <div class="row">
+                        <label class="col-md-3 col-lg-3 col-form-label" for="idquestion">Mã bài viết</label>
+                        <input  class="col-md-9 col-lg-6 col-table-reponsive form-control" [(ngModel)]="question.id" name="idquestion" id="idquestion" type="text" placeholder="Mã bài viết"/>
+                    </div>
+                    </div> -->
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-3 col-lg-3 col-form-label" for="name">Tiêu đề<span
+                                    class="text-danger">*</span></label>
+                            <div class="col-md-9 col-lg-6 col-table-reponsive p-0">
+                                <input class="form-control" [(ngModel)]="question.title" name="title" id="title"
+                                    type="text" placeholder="Tiêu đề" required />
+                                <div *ngIf="form.controls['title']?.invalid && (form.controls['title']?.dirty || form.controls['title'].touched)"
+                                    class="danger-notice">
+                                    <div *ngIf="form.controls['title'].errors?.['required']">Tiêu đề không được để trống
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group">
+                    <div class="row">
+                        <label class="col-md-3 col-lg-3 col-form-label" for="description">Mô tả</label>
+                        <div class="col-md-9 col-lg-6 col-table-reponsive p-0">
+                            <input class="form-control" [(ngModel)]="question.description" name="description" id="description" type="text" placeholder="Mô tả" required/>
+                            <div *ngIf="form.controls['name']?.invalid && (form.controls['name']?.dirty || form.controls['name'].touched)" class="danger-notice">
+                                <div *ngIf="form.controls['name'].errors?.['required']">Mô tả không được để trống</div>
+                            </div>
+                        </div>
+                    </div>
+                    </div> -->
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-3 col-lg-3 col-form-label" for="image">Hình ảnh</label>
+                            <div class="col-md-9 col-lg-6 col-table-reponsive p-0">
+                                <img *ngIf="question.imageUrl" [src]="question.imageUrl" width="400px" height="220px"
+                                    name="image" id="image" type="text">
+                                <input class="form-control" (change)="onFileImageSelected($event)" name="image"
+                                    id="image" type="file" placeholder="Hình ảnh" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-3 col-lg-3 col-form-label" for="image">Audio</label>
+                            <div class="col-md-9 col-lg-6 col-table-reponsive p-0">
+                                <!-- <audio controls *ngIf="question.audioSrc" [src]="question.audioSrc"></audio> -->
+                                <audio controls *ngIf="question.audioSrc">
+                                    <source [src]="question.audioSrc" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                                <input class="form-control" (change)="onFileAudioSelected($event)" name="audio"
+                                    id="audio" type="file" placeholder="Audio" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-3 col-lg-3 col-form-label" for="content">Paragraph</label>
+                            <div class="col-md-9 col-lg-6 col-table-reponsive p-0">
+                                <input class="form-control" [(ngModel)]="question.paragraph" name="paragraph"
+                                    id="paragraph" type="text" placeholder="Paragraph" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-3 col-lg-3 col-form-label" for="idTeacher">Độ khó</label>
+                            <div class="col-md-9 col-lg-6 col-table-reponsive p-0">
+                                <select (blur)="validateFormSuccess.touchDiff = true" name="touchDiff"
+                                    class="custom-select input-type-select input-form-space"
+                                    [(ngModel)]="question.difficulty" required>
+                                    <option [selected]="question.difficulty === null || question.difficulty === 0"
+                                        [ngValue]="0">Độ khó</option>
+                                    <option *ngFor="let section of questionContant.difficulties;"
+                                        value="{{ section.key }}">{{ section.value }}</option>
+                                </select>
+
+                                <div *ngIf="question.difficulty === 0 && question.difficulty !== null && validateFormSuccess.touchDiff"
+                                    class="danger-notice">
+                                    <div
+                                        *ngIf="question.difficulty === 0 && question.difficulty !== null && validateFormSuccess.touchDiff">
+                                        Độ khó câu hỏi không được để trống!</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Câu trả lời -->
+                    <div class="form-group">
+                        <div class="row">
+                            <label>Câu trả lời</label>
+                            <div *ngFor="let questionAnswer of question.questionAnswers; let i = index">
+                                <div class="mb-3 row">
+                                    <div class="col-9">
+                                        <input type="text" class="form-control" [(ngModel)]="questionAnswer.content"
+                                            name="content{{i}}" placeholder="Nội dung câu trả lời">
+                                    </div>
+                                    <div class="col-2  add-question-answer-correct d-flex gap-4">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="verification-type-{{ i }}"
+                                                name="question-answer{{i}}" class="custom-control-input"
+                                                [checked]="questionAnswer.isCorrect"
+                                                (click)="setCorrectAnswer(questionAnswer)">
+                                            <label class="custom-control-label font-weight-normal"
+                                                for="verification-type-{{ i }}">True</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-1">
+                                        <button type="button" class="btn btn-danger"
+                                            (click)="deleteQuestionAnswer(i)">Xóa</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary mb-3" (click)="addQuestionAnswer()">Thêm câu
+                                trả lời</button>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="d-flex">
+                            <div class="ml-auto">
+                                <button routerLink="/admin/question" type="button"
+                                    class="btn btn-secondary waves-effect waves-light">Quay lại</button>
+                                <button [disabled]="form.invalid" type="submit"
+                                    class="btn btn-success waves-effect waves-light ml-2">Xác nhận</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- end col -->
+</div>

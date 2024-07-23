@@ -1,0 +1,183 @@
+<div class="container-fluid">
+    <div class="row mb-5  d-flex align-items-center justify-content-center">
+        <div class="col-12">
+            <h1 class="h4 mt-4 text-center  d-flex align-items-center justify-content-center" id="">
+                {{examToeic?.title?.toUpperCase()}}
+                <!-- <a class="btn btn-primary btn-sm" href="">Thoát</a> -->
+                <i class="fa-solid fa-house" (click)="get()"></i>
+
+            </h1>
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="col-12 col-md-10 col-lg-10">
+
+            <div class="container-question_right" #questionRightContainer *ngIf="!continuteFlag">
+                <div class="container-part_item" *ngFor="let part of examToeic.partToeics" id="part{{part.id}}">
+
+                    <!-- <div class="part_name">
+                            <h5>{{part.name+': ' + handlePartDescription(part.type)}}</h5>
+                        </div> -->
+                    <div class="container-group_item" *ngFor="let group of part.groupToeics">
+                        <div class="group_title">
+                            <h6>{{group.title}}</h6>
+                            <p *ngIf="group.paragraph!==null">{{group.paragraph}}</p>
+                        </div>
+                        <div class="group_image_audio">
+                            <audio *ngIf="handleConvertNameFile(group.audio)!==null"
+                                [src]="handleConvertNameFile(group.audio)" controls="play"></audio>
+                            <img *ngIf="handleConvertNameFile(group.image)!==null"
+                                [src]="handleConvertNameFile(group.image)" alt="group.image">
+                        </div>
+                        <div class="container-question_item">
+
+                            <div *ngFor="let question of group.questions; let i = index" class="question_item"
+                                id="question{{question.id}}">
+                                <div class="question_item-title">
+                                    <strong>Câu hỏi {{question.number}}</strong>
+                                    <h3 [innerHTML]="question.title"></h3>
+                                </div>
+                                <div class="question_image_audio">
+                                    <img *ngIf="handleConvertNameFile(question.image)!==null"
+                                        [src]="handleConvertNameFile(question.image)" alt="group.image">
+                                </div>
+                                <div>
+                                    <audio *ngIf="handleConvertNameFile(question.audio)!==null"
+                                        [src]="handleConvertNameFile(question.audio)" controls="play"></audio>
+                                </div>
+                                <div class="question-answer">
+                                    <label *ngFor="let answer of question.questionAnswers; let i=index"
+                                        class="answer-option">
+                                        <label class="custom-radio">
+                                            <input type="radio" [name]="'answer'+question.id" [value]="answer.id"
+                                                [(ngModel)]="selectedAnswers[question.id]">
+                                            <span class="radio-btn">{{handleConvert(i)}}</span>
+                                        </label>
+                                        <label *ngIf="part.type===1 || isShowAnswer===true" class="answer_content">
+                                            {{answer.content}}</label>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row" style="height:100vh;" *ngIf="continuteFlag">
+                <div class="col-2">
+                </div>
+                <div class="col-7">
+                    <img src="assets/images/continuteLearnin.png" alt="Student studying" class="img-fluid">
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-custom mt-4 custompaute" (click)="continute(false)">Continue</button>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-12 col-md-2 col-lg-2  ">
+            <div class="container-question_left">
+                <div class="countdown">
+                    <span class="d-flex justify-content-center">
+                        <i class="fa-solid fa-clock"></i>
+                        <countdown *ngIf="leftTime" #countdown [config]="{ leftTime: leftTime ,notify: [15 ] }"
+                            (event)="handleEvent($event)"></countdown>
+                    </span>
+                </div>
+                <div *ngFor="let allQuestionPart of allQuestionParts">
+                    <div>
+                        <div class="btn-part">
+                            <div type="button" class="btn btn-primary"
+                                (click)="handleScrollToPart('part'+allQuestionPart.partInfo.id)">
+                                {{allQuestionPart.partInfo.name.toUpperCase()}}</div>
+                        </div>
+                    </div>
+                    <div class="select-question">
+                        <button *ngFor="let question of allQuestionPart.questions; let i = index"
+                            class="question-button btn btn-light"
+                            (click)="handleScrollToPart('question'+question.id)" [ngStyle]="{'background-color': handleCheckAnswerSelected(question.id) ? '#007aff' : 'none',
+                             'color': handleCheckAnswerSelected(question.id) ? 'white' : '#777777'
+                                }">
+                            {{question.number}}
+                        </button>
+                    </div>
+                </div>
+                <div class="row py-5">
+                    <div class="col-9">
+                        <input type="range" class="form-range progress" [attr.min]="1" [attr.max]="allQuestions.length"
+                            [attr.value]="countNonNullItems()" disabled>
+                    </div>
+                    <div class="col-3 progress-text">
+                        <span class="progress-text">{{ countNonNullItems() }}/{{ allQuestions.length
+                            }}</span>
+                    </div>
+                </div>
+
+                <div class="row  ">
+                    <button *ngIf="examToeic.partToeics[0]?.type===2" class="action-button btn btn-primary mb-2"
+                        id="btnNextExamToeicListening" (click)="getExamToeicReading()">READING</button>
+                    <button *ngIf="examToeic.partToeics[0]?.type===1" class="action-button mb-2"
+                        id="btnNextExamToeicListening" (click)="getExamToeicListening()">
+                        LISTENING</button>
+
+                    <button *ngIf="examToeic.partToeics[0]?.type===1" (click)="sendAnswers()"
+                        class="btn btn-custom btn-outline-primary  col-6">Submit</button>
+                    <button *ngIf="examToeic.partToeics[0]?.type===2" (click)="getExamToeicReading()"
+                        class="btn btn-custom btn-outline-primary  col-6">Next</button>
+
+                    <button class="btn btn-custom btn-outline-secondary col-6" (click)="continute(true)">Pause</button>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div *ngIf="showResultModal">
+    <div id="questionResult">
+        <button (click)="closeModal()">x</button>
+        <div class="totalScore">
+            <Strong>Tổng điểm của bạn là</Strong>
+            <h3>{{ result.totalScore }}</h3>
+        </div>
+        <div class="totalCountFalse">
+            <Strong>Số câu sai là</Strong>
+            <h3>{{ result.totalCountFalse }}</h3>
+        </div>
+        <div class="totalCountTrue">
+            <Strong>Số câu đúng là</Strong>
+            <h3>{{ result.totalCountTrue }}</h3>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="container-fluid py-5" >
+    <div class="row" style="height:100vh;"  *ngIf="continuteFlag">
+        <div class="col-2">
+            <div class="countdown">
+                <span class="d-flex justify-content-center" >
+                    <i class="fa-solid fa-clock"></i>
+                    <countdown #countdown [config]="{ leftTime: leftTime ,notify: [4680000 ] ,demand:true }" (event)="handleEvent($event)"></countdown>
+                </span>
+            </div>        </div>
+        <div class="col-7">
+            <img src="assets/images/continuteLearnin.png" alt="Student studying" class="img-fluid">
+        </div>
+        <div class="col-3">
+            <button class="btn btn-custom mt-4 custompaute" (click)="continute(false)">Continue</button>
+
+        </div>
+        
+    </div>
+</div> -->

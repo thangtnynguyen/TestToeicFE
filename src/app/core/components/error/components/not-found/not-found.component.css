@@ -1,0 +1,15 @@
+.error-img {
+    max-width: 200px; /* Giới hạn kích thước ảnh */
+}
+
+.text-muted {
+    color: #ccc !important; /* Làm mờ chữ với màu #ccc */
+}
+
+.btn-primary:hover {
+    transform: scale(1.05); /* Hiệu ứng phóng to khi hover */
+}
+
+.text-nau{
+    color: #ccc;
+}

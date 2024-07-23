@@ -1,0 +1,38 @@
+<app-slide-show></app-slide-show>
+<div class="container my-4">
+    <div class="row">
+        <div class="col-12 text-center mb-3">
+            <h1 class="h1-custom">Luyện thi thử TOEIC® online 2024</h1>
+            <p>Chào mừng đến với <strong>TOEIC® Test Pro</strong>, trang web/ứng dụng TOEIC cung cấp cho người học các
+                bài luyện tập theo từng part, để thi thử cũng như các bài tập về từ vựng và ngữ pháp. Bắt đầu hành trình
+                chinh phục chứng chỉ TOEIC® với các bài luyện tập trên trang web/ứng dụng của chúng tôi ngay hôm nay!
+            </p>
+        </div>
+    </div>
+    <div class="row justify-content-center mb-4">
+        <div class="col-auto">
+            <div class="text-center mt-3">
+                <div class="button-group rounded-pill bg-light p-2 shadow" style="display: inline-block;">
+                    <button class="btn rounded-pill mx-1 "
+                        style="background-color: #ffffff; border: none;" (click)="openToeic()"  
+                        [ngClass]="{'active':isToeic===true}">Toeic
+                    </button>
+                    <button class="btn rounded-pill mx-1" style="background-color: #ffffff; border: none;" (click)="openQuiz()"
+                    [ngClass]="{'active':isToeic===false}">
+                    Quiz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-left">
+            <h2 *ngIf="isToeic">Luyện Toeic</h2>
+            <h2 *ngIf="!isToeic">Quiz For Fun</h2>
+            <hr class="hr-custom">
+        </div>
+    </div>
+</div>
+<app-list-toeic-home *ngIf="isToeic"></app-list-toeic-home>
+<app-list-quiz-home *ngIf="!isToeic"></app-list-quiz-home>
+<app-banner-info></app-banner-info>
+<app-overview-toeic></app-overview-toeic>

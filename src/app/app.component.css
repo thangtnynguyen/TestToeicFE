@@ -1,0 +1,81 @@
+@import url("~@fortawesome/fontawesome-free/css/all.min.css");
+@import url('./core/styles/toastr.css');
+
+@import url("~@fortawesome/fontawesome-free/css/all.min.css");
+@import url("~bootstrap-icons/font/bootstrap-icons.min.css");
+@import url('~sweetalert2/dist/sweetalert2.min.css');
+/* @import "~@ng-select/ng-select/themes/default.theme.css"; */
+@import url('~ngx-toastr/toastr');
+@import url('./core/styles/common.css');
+@import url('./core/styles/loading-ui.css');
+@import url('./core/styles/text.css');
+@import url('./core/styles/toastr.css');
+
+/* @import url("./admin/assets/css/bootstrap.css");
+@import url("./admin/assets/css/app.css"); */
+
+
+/* cursor */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* font-weight */
+.fw-700 {
+    font-weight: 700 !important;
+}
+
+/* font-size */
+.fs-r-1 {
+    font-size: 1rem !important;
+}
+
+.fs-12 {
+    font-size: 12px;
+}
+
+/* border */
+.bb-0 {
+    border-bottom: 0 !important;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+
+
+/* start: toast */
+
+.ngx-toastr {
+    position: relative;
+    min-height: var(--toastify-toast-min-height);
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    padding: 12px 16px !important;
+    border-radius: 4px;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, .1), 0 2px 15px 0 rgba(0, 0, 0, .05) !important;
+    /* display: -ms-flexbox; */
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    max-height: 120px !important;
+    overflow: hidden;
+    font-family: var(--toastify-font-family);
+    cursor: pointer !important;
+    direction: ltr;
+    font-size: 0.9rem;
+}
+
+.toast-title {
+    margin-left: 25px !important;
+
+}
+
+.p-toast .p-toast-message .p-toast-message-content .p-toast-detail {
+    max-width: 70% !important;
+    word-wrap: break-word !important;
+}
+
+/* end: toast */

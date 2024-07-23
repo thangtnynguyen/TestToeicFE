@@ -1,0 +1,71 @@
+<div class="container-fluid" *ngIf="false">
+    <div class="row my-3">
+        <div class="col text-center" style="margin-bottom: 100px;">
+            <strong>
+                <span class="color-white">{{question.title}}</span>
+            </strong>
+        </div>
+        <div class="row my-4 justify-content-center">
+            <div class="col-md-6" *ngIf="question.image">
+                <img src="{{baseUrl}}/{{question.image}}" alt="Image" class="img-fluid img-thumbnail custom-img">
+
+            </div>
+            <div class="col-md-6" *ngIf="question.audio">
+                <audio controls class="w-100">
+                    <source [src]="baseUrl+'/'+question.audio" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <!-- <audio [src]="baseUrl+'/'+question.audio" controls="play"></audio> -->
+            </div>
+        </div>
+    </div>
+    <div class="row " style="margin-top: 100px;">
+        <div class="col-md-3" *ngFor="let answer of question.questionAnswers">
+            <div class=" color-white-sm question-box blue">{{answer.content}}</div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="container-fluid">
+    <div class="row my-3">
+        <div class="col text-center" style="margin-bottom: 100px;">
+            <strong>
+                <span class="color-white">{{question.title}}</span>
+            </strong>
+        </div>
+        <div class="row my-4 justify-content-center">
+            <div class="col-md-6" *ngIf="question.image">
+                <img [src]="baseUrl + '/' + question.image" alt="Image" class="img-fluid img-thumbnail custom-img">
+            </div>
+            <div class="col-md-6" *ngIf="question.audio">
+                <audio controls class="w-100" #audioPlayer>
+                    <source [src]="baseUrl + '/' + question.audio" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row justify-content-center" style="margin-top: 100px;">
+        <div class="col-md-auto" *ngFor="let answer of question.questionAnswers">
+            <div class="color-white-sm question-box"
+            [style.background]="answer.color"  
+            (click)="submitCheckAnswer(answer.id)">{{answer.content}}</div>
+        </div>
+    </div> -->
+    <div class="row justify-content-center" style="margin-top: 100px;">
+        <div class="col-md-auto" *ngFor="let answer of question.questionAnswers">
+            <div class="color-white-sm question-box"
+                [style.background]="answer.id === selectedAnswerId ? (answer.id === correctAnswerId ? 'green' : 'red') : (answer.id === correctAnswerId ? 'green' : answer.color)"
+                (click)="submitCheckAnswer(answer.id)">
+                {{ answer.content }}
+            </div>
+        </div>
+    </div>
+    <div class="navigation-buttons mt-5">
+        <button class="btn btn-secondary" (click)="goBack()">Back</button>
+        <button class="btn btn-secondary" (click)="goNext()">Next</button>
+      </div>
+      
+</div>

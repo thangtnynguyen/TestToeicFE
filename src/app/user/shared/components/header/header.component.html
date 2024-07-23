@@ -1,0 +1,63 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://www.ets.org/content/dam/ets-org/logo/ETS.svg" alt="toeic" width="50px" height="50px">
+                <img src="https://www.ets.org/content/dam/ets-org/logo/TOEIC.svg" alt="toeic" width="50px"
+                    height="50px">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- -->
+            </div>
+
+            <!-- -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link"  [routerLink]="['/']">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  [routerLink]="['/toeic']">Đề thi online</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="">Services</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link"  [routerLink]="['/toeic/toeic-result']">History</a>
+                </li>
+                <li class="nav-item" *ngIf="!userCurrent || userCurrent==null">
+                    <a class="nav-link btn btn-primary" (click)="loginComponent.openModal()">Sign In</a>
+                </li>
+                <!-- Dropdown User Profile -->
+
+                <li class="nav-item dropdown" *ngIf="userCurrent">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{  App.baseApiUrl + userCurrent.avatarUrl || 'https://img2.thuthuatphanmem.vn/uploads/2018/11/30/anh-dai-dien-anime-dep_104204759.jpg' }}"
+                            alt="Profile" class="rounded-circle" style="width: 30px; height: 30px;">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownProfile">
+                        <li>
+                            <h5 class="dropdown-item card-title mb-0 fs-9">{{ userCurrent.name ?? 'N?A' }}</h5>
+                        </li>
+                        <li><a class="dropdown-item card-text text-secondary "
+                                style="font-size: 0.875rem;">{{userCurrent.email ??'none'}}</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item fs-7" routerLink="/change-info">Settings</a></li>
+                        <li><a class="dropdown-item fs-7" (click)="logout()">Logout</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</header>
+
+
+
+<app-login></app-login>

@@ -1,0 +1,116 @@
+.question-box {
+    padding: 20px 0px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    text-align: center;
+}
+
+.blue {
+    background-color: #007bff;
+}
+
+.teal {
+    background-color: #20c997;
+}
+
+.yellow {
+    background-color: #ffc107;
+}
+
+.red {
+    background-color: #dc3545;
+}
+
+
+.container-fluid {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #343a40;
+    /* Màu nền tối */
+    padding: 10px !important;
+    height: 100vh;
+    margin-bottom: -100px;
+}
+
+.row {
+    width: 100%;
+}
+
+.color-white {
+    color: #ffffff;
+    font-size: 30px;
+}
+
+.color-white-sm {
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.custom-img {
+    border-radius: 10px;
+    border: 1px solid #dee2e6;
+    padding: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    max-height: 300px;
+}
+
+
+.question-box {
+    margin: 10px;
+    padding: 20px;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-width: 150px;
+    max-width: 300px;
+}
+
+.color-white-sm {
+    color: white;
+}
+
+
+.question-box {
+    transition: background-color 2s ease;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 8px;
+    /* Bo góc */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Thêm bóng đổ */
+    text-align: center;
+    min-width: 150px;
+    /* Đảm bảo kích thước nhất quán */
+    max-width: 300px;
+    /* Giới hạn kích thước tối đa */
+    cursor: pointer;
+}
+
+
+.navigation-buttons .btn {
+    font-size: 16px;
+    /* Điều chỉnh kích thước phông chữ */
+    color: white;
+    /* Màu chữ */
+    background-color: #333;
+    /* Màu nền */
+    border: none;
+    /* Không viền */
+    padding: 10px 20px;
+    /* Đệm cho nút */
+    margin: 5px;
+    /* Khoảng cách giữa các nút */
+}
+
+.navigation-buttons .btn:hover {
+    background-color: #555;
+    /* Màu khi hover */
+}

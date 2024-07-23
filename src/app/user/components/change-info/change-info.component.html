@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 mx-auto mt-5">
+            <div class="card">
+                <div class="card-header">
+                    Thông tin người dùng
+                </div>
+                <div class="card-body">
+                    <form (ngSubmit)="handleSubmit()" >
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email"  [(ngModel)]="userCurrent.email" placeholder="Nhập email của bạn">
+                        </div>
+                        <div class="mb-3">
+                            <label for="phoneNumber" class="form-label">Số điện thoại</label>
+                            <input type="text" class="form-control" id="phoneNumber" name="phone" [(ngModel)]="userCurrent.phone"
+                                placeholder="Nhập số điện thoại của bạn">
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Họ và tên</label>
+                            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="userCurrent.name" placeholder="Nhập họ và tên của bạn">
+                        </div>
+                        <div class="mb-3">
+                            <label for="avatar" class="form-label">Ảnh đại diện</label>
+                            <div class="d-flex align-items-center">
+                                <input type="file" class="form-control" id="avatar" name="avatarUrl" (change)="onFileSelected($event)">
+                                <img *ngIf="avatarPreview" [src]="avatarPreview"
+                                    class="img-thumbnail rounded-circle mx-2" alt="Ảnh đại diện"
+                                    style="width: 100px; height: 100px;">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Lưu thông tin</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+.img-thumbnail {
+    border: none;
+  }
+  
+  .rounded-circle {
+    border-radius: 50%;
+  }

@@ -1,0 +1,173 @@
+<!-- <div class="row">
+
+    <input type="file" webkitdirectory mozdirectory msdirectory odirectory directory multiple />
+
+    <a href="https://www.anhngumshoa.com/uploads/sound/110.mp3" download=""></a>
+    <a href="https://www.anhngumshoa.com/uploads/sound/110.mp3" download="audio_toeic_1.mp3">Tải về âm thanh</a>
+
+</div>
+
+
+<div class="row" >
+    <input #fileInput type="file"  id="fileInput" (change)="checkFileCount()" webkitdirectory directory multiple>
+</div> -->
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0">Thêm đề thi toeic</h4>
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li routerLink="/admin/dashboard" class="breadcrumb-item d-flex align-items-center">
+                        <span>Trang chủ</span>
+                        <i class="breadcrumb-item-arrow fa-solid fa-angle-right"></i>
+                    </li>
+                    <li class="breadcrumb-item d-flex align-items-center" routerLink="/admin/exam">
+                        <span>Quản lý đề thi toeic</span>
+                        <i class="breadcrumb-item-arrow fa-solid fa-angle-right"></i>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        <span>Thêm đề thi toeic</span>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                Thêm đề thi toeic
+            </div>
+            <form class="card-body exam-form" #form="ngForm">
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-md-3 col-lg-3 col-form-label" for="title">Tên đề kiểm tra <span
+                                class="text-danger">*</span></label>
+                        <div class="col-md-9 col-lg-8 col-table-reponsive p-0">
+                            <input [(ngModel)]="exam.title" class="form-control" id="title" name="title" type="text"
+                                required placeholder="Tiêu đề" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-md-3 col-lg-3 col-form-label" for="description">Mô tả<span
+                                class="text-danger">*</span></label>
+                        <div class="col-md-9 col-lg-8 col-table-reponsive p-0">
+                            <input [(ngModel)]="exam.description" class="form-control" id="description"
+                                name="description" type="text" required placeholder="Mô tả" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-md-3 col-lg-3 col-form-label" for="start">Thời gian bắt đầu</label>
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-5 ps-0">
+                                    <input [(ngModel)]="exam.startTime" class="form-control" placeholder="Từ"
+                                        name="start" id="start" type="datetime-local" />
+                                </div>
+                                <div class="col-5">
+                                    <input [(ngModel)]="exam.endTime" class="form-control" placeholder="Đến" name="end"
+                                        id="end" type="datetime-local" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-md-3 col-lg-3 col-form-label" for="duration">Thời gian làm bài</label>
+                        <div class="col-md-9 col-lg-8 col-table-reponsive p-0 relative">
+                            <input [(ngModel)]="exam.duration" class="form-control" placeholder="Thời gian làm bài"
+                                name="duration" id="duration" type="text" />
+                            <p class="minutes">Phút</p>
+                        </div>
+                    </div>
+                </div>
+
+
+               
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-md-3 col-lg-3 col-form-label" for="excelFile">Select Excel File</label>
+                        <div class="col-md-9 col-lg-8 col-table-reponsive p-0 relative">
+                            <input class="form-control" type="file" id="excelFile" name="excelFile"
+                                (change)="onFileSelected($event)">
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="mb-4" style="margin-left: 800px;">
+                    <em>Vui lòng soạn đề thi toeic  theo đúng định dạng. <a href="../../../../../assets/files/sample_toeic_import_template.xlsx">Tải về file mẫu Excel</a></em>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-md-3 col-lg-3 col-form-label" for="folder">Select Folder</label>
+                        <div class="col-md-9 col-lg-8 col-table-reponsive p-0 relative">
+                            <input (change)="onFileChange($event)" class="form-control" type="file" id="folder"
+                                name="folder" webkitdirectory multiple>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="d-flex">
+                        <div class="ml-auto">
+                            <button routerLink="/admin/exam-toeic" type="button"
+                            class="btn btn-secondary waves-effect waves-light">Quay lại</button>
+                            <button [disabled]="form.invalid" (click)="handleSubmitCreateExam()" type="submit"
+                                class="btn btn-success waves-effect waves-light ml-2">Xác nhận</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- <div class="col-xl-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                Cấu hình
+            </div>
+            <div class="card-body ps-5 pe-3 py-0">
+                <div class="custom-control custom-switch ml-3" dir="ltr">
+                    <input [(ngModel)]="exam.type" type="checkbox" class="custom-control-input" id="isMixQuestion"
+                        name="isMixQuestion" [checked]="true">
+                    <label class="custom-control-label" for="isMixQuestion">Tự động lấy từ ngân hàng đề</label>
+                </div>
+                <div class="custom-control custom-switch ml-3" dir="ltr">
+                    <input [(ngModel)]="exam.isSeeScore" type="checkbox" class="custom-control-input" id="isSeeScore"
+                        name="isSeeScore" [checked]="true">
+                    <label class="custom-control-label" for="isSeeScore">Xem điểm sau khi thi</label>
+                </div>
+                <div class="custom-control custom-switch ml-3" dir="ltr">
+                    <input [(ngModel)]="exam.IsShowContent" type="checkbox" class="custom-control-input"
+                        id="isShowContent" name="isShowContent" [checked]="true">
+                    <label class="custom-control-label" for="isShowContent">Xem bài làm khi thi xong</label>
+                </div>
+                <div class="custom-control custom-switch ml-3" dir="ltr">
+                    <input [(ngModel)]="exam.isMixQuestion" type="checkbox" class="custom-control-input" id="status"
+                        name="status" [checked]="true">
+                    <label class="custom-control-label" for="status">Đảo câu hỏi</label>
+                </div>
+                <div class="custom-control custom-switch ml-3" dir="ltr">
+                    <input [(ngModel)]="exam.isMixQuestionAnswer" type="checkbox" class="custom-control-input"
+                        id="isMixQuestionAnswer" name="isMixQuestionAnswer" [checked]="true">
+                    <label class="custom-control-label" for="isMixQuestionAnswer">Đảo đáp án</label>
+                </div>
+                <div class="custom-control custom-switch ml-3" dir="ltr">
+                    <input [(ngModel)]="exam.isAllowChangeTab" type="checkbox" class="custom-control-input"
+                        id="isAllowChangeTab" name="isAllowChangeTab" [checked]="true">
+                    <label class="custom-control-label" for="isAllowChangeTab">Tự động nộp bài khi chuyển tab</label>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>

@@ -1,0 +1,32 @@
+.p-toast-detail {
+    max-width: 100px !important;
+    word-wrap: break-word !important;
+}
+
+.p-toast .p-toast-message .p-toast-message-content .p-toast-detail{
+    max-width: 100px !important;
+    word-wrap: break-word !important;
+}
+
+
+/* Tạo file CSS mới, ví dụ: custom-toast-styles.css */
+.custom-toast .p-toast-message-success {
+    background-color: green; /* Thay đổi màu nền cho thành công */
+    color: white; /* Thay đổi màu chữ */
+    /* Thêm các định nghĩa khác theo thiết kế của bạn */
+  }
+  
+  .custom-toast .p-toast-message-error {
+    background-color: red; /* Thay đổi màu nền cho lỗi */
+    color: white; /* Thay đổi màu chữ */
+    /* Thêm các định nghĩa khác theo thiết kế của bạn */
+  }
+  
+  /* Nếu cần tùy chỉnh thêm cho nút đóng (X) */
+  .custom-toast .p-toast-icon-close {
+    color: white; /* Thay đổi màu icon */
+  }
+  
+
+
+  

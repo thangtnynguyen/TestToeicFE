@@ -1,0 +1,136 @@
+<div class="container">
+    <div class="row mb-3">
+        <div class="col text-center">
+            <strong>Chi tiết đề thi</strong>
+        </div>
+    </div>
+
+    <!-- Nút chọn loại đề thi -->
+    <div class="row mb-3 justify-content-center back-color">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{examToeic.title}}</h5>
+                    <p class="card-text">{{examToeic.description}}</p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <span class="highlight-text">Start:</span> {{ formatAMPM(examToeic.startTime) + ' ' +
+                            formatDate(examToeic.startTime) }}
+                        </li>
+                        <li class="list-group-item">
+                            <span class="highlight-text">End:</span> {{ formatAMPM(examToeic.endTime) + ' ' +
+                            formatDate(examToeic.endTime) }}
+                        </li>
+                        <li class="list-group-item">
+                            <span class="highlight-text">Duration:</span> {{examToeic.duration}}
+                        </li>
+                    </ul>
+                    <!-- <a href="/toeic/test-toeic/{{examToeic.id}}" class="btn btn-primary custom-btn">Test now</a> -->
+                    <a (click)="testNow(examToeic)" class="btn btn-primary custom-btn">Test now</a>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- thong tin nguoi dung -->
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body pb-4 border-bottom">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="{{  App.baseApiUrl + userCurrent.avatarUrl || 'https://img2.thuthuatphanmem.vn/uploads/2018/11/30/anh-dai-dien-anime-dep_104204759.jpg' }}"
+                            class=" rounded-circle me-2" alt="Avatar" style="width: 50px; height: 50px;">
+                        <h5 class="card-title mb-0">{{userCurrent.name}}</h5>
+                    </div>
+                    <p class="card-text text-secondary" style="font-size: 0.875rem;">Bạn chưa tạo mục tiêu cho quá trình
+                        luyện thi của mình. Tạo ngay.</p>
+                </div>
+                <div class="card-body">
+                    <a href="/toeic/toeic-result" class="btn btn-primary">Thông kê kết quả</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thanh add comment -->
+    <div class="row mb-4">
+        <div class="col-lg-8">
+            <div class="input-group">
+                <input type="text" class="form-control" [(ngModel)]="commentAdd.content"
+                    placeholder="Comment về bài thi toeic,...........">
+                <button class="btn btn-secondary" (click)="submitComment(examToeic.id)">Send</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row mb-4 mt-4">
+        <div class="col-lg-8  mt-4">
+            <div class="comments-container">
+                <ul id="comments-list" class="comments-list">
+                    <li *ngFor="let item of comments">
+                        <app-comment [comment]="item" [comments]="comments" (messageEvent)="getComment()"></app-comment>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div id="englishLearningCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#englishLearningCarousel" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#englishLearningCarousel" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#englishLearningCarousel" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://th.bing.com/th/id/R.67902d59c62c525fe931a0e0fa595a73?rik=rd4PP6O1F4ZFZA&pid=ImgRaw&r=0"
+                            class="d-block w-100" alt="English Books">
+                        <div class="carousel-caption d-none d-md-block">
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://ebest.edu.vn/wp-content/uploads/2021/09/Banner-khoa-hoc-8-min.png"
+                            class="d-block w-100" alt="Online Courses">
+                        <div class="carousel-caption d-none d-md-block">
+
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://th.bing.com/th/id/R.3cbcc8eac3ef6e97a0c43146ae970722?rik=ZJonfXupk6qoAA&pid=ImgRaw&r=0"
+                            class="d-block w-100" alt="Language Practice">
+                        <div class="carousel-caption d-none d-md-block">
+
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#englishLearningCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#englishLearningCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span the="visually-hidden">Next</span>
+                </button>
+            </div>
+
+
+
+            <div class="image-info">
+                <img src="https://babilala.vn/wp-content/uploads/2023/03/banner-social.jpg" alt="">
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+<app-login></app-login>

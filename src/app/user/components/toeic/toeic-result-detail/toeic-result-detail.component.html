@@ -1,0 +1,206 @@
+<div class="container-fluid" *ngIf="showResultModal">
+    <div class="row">
+
+        <div class="col-12 col-md-10 col-lg-10">
+
+            <div class="container-question_right" #questionRightContainer>
+                <div class="container-question_right_bottom">
+                    <div class="container-part_item" *ngFor="let part of examToeic.partToeics" id="part{{part.id}}">
+                        <div class="container-group_item" *ngFor="let group of part.groupToeics">
+                            <div class="group_title">
+                                <h6>{{group.title}}</h6>
+                                <p *ngIf="group.paragraph!==null">{{group.paragraph}}</p>
+                            </div>
+                            <div class="group_image_audio">
+                                <audio *ngIf="handleConvertNameFile(group.audio)!==null"
+                                    [src]="handleConvertNameFile(group.audio)" controls="play"></audio>
+                                <img *ngIf="handleConvertNameFile(group.image)!==null"
+                                    [src]="handleConvertNameFile(group.image)" alt="group.image">
+                            </div>
+                            <div class="container-question_item">
+
+                                <div *ngFor="let question of group.questions; let i = index" class="question_item"
+                                    id="question{{question.id}}">
+                                    <div class="question_item-title">
+                                        <strong>Câu hỏi {{question.number}}</strong>
+                                        <h3 [innerHTML]="question.title"></h3>
+                                    </div>
+                                    <div class="question_image_audio">
+                                        <img *ngIf="handleConvertNameFile(question.image)!==null"
+                                            [src]="handleConvertNameFile(question.image)" alt="group.image">
+                                    </div>
+                                    <div>
+                                        <audio *ngIf="handleConvertNameFile(question.audio)!==null"
+                                            [src]="handleConvertNameFile(question.audio)" controls="play"></audio>
+                                    </div>
+                                    <div class="question-answer">
+                                        <label *ngFor="let answer of question.questionAnswers; let i=index"
+                                            class="answer-option">
+                                            <label class="custom-radio">
+                                                <input type="radio" [name]="'answer'+question.id" [value]="answer.id"
+                                                    [(ngModel)]="selectedAnswers[question.id]" disabled>
+                                                <span class="radio-btn" [ngClass]="{
+                                                    'answer-red': question.isTrue === false && question.questionAnswerId===answer.id,
+                                                    'answer-green': answer.isCorrect === true && question.questionAnswerId!==0,
+                                                    'answer-yellow': question.isTrue === null  && question.questionAnswerId===0 && answer.isCorrect === true
+    
+                                                    }">{{handleConvert(i)}}</span>
+                                            </label>
+                                            <label *ngIf="part.type===1 || isShowAnswer===true" class="answer_content"
+                                                [ngClass]="{
+                                                'answer-red': question.isTrue === false && question.questionAnswerId===answer.id,
+                                                'answer-green': answer.isCorrect === true && question.questionAnswerId!==0,
+                                                'answer-yellow': question.isTrue === null  && question.questionAnswerId===0 && answer.isCorrect === true
+
+                                                }">
+                                                {{answer.content}}</label>
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="col-12 col-md-2 col-lg-2">
+            <div class="container-question_left">
+                <div class="card" style="border: none;">
+                    <div class="row text-dark text-decoration-none">
+                        <div class="card-body">
+                            <strong class="card-text font-weight-bold  " style="font-size: 13px;">{{
+                                examResult.examToeic?.title.toUpperCase()
+                                }}</strong>
+                            <br>
+                            <!-- <span class="badge mt-2 mb-2" [ngClass]="{
+                            ' badge-primary':examResult.score>=(examResultDetails.length+1)/2,
+                            ' badge-danger': examResult.score<(examResultDetails.length+1)/2,
+                            }">Score: {{ examResult.score }}/{{examResultDetails.length}}đ</span>
+                            <h6 class="size-mn">Correct Reading : {{ examResult.numberCorrectReadingAnswers }}</h6>
+                            <h6 class=" size-mn">Correct Listening : {{ examResult.numberCorrectListeningAnswers }}</h6>
+                            <h6 class="size-mn">Correct Total : {{ examResult.numberCorrectOverallAnswers }}</h6>
+                            <span class="badge badge-secondary ms-5">{{convertTimeToRelative(examResult.startTime)}}</span>
+                            <span class="badge badge-secondary mx-2">{{examResult.durationTime}}</span> -->
+                            <button class="btn btn-custom btn-outline-primary  col-12 mt-2" (click)="openModal()">Xem
+                                chi tiết điểm </button>
+                        </div>
+
+                        <div class="card-body">
+                            <div *ngFor="let allQuestionPart of allQuestionParts">
+                                <div>
+                                    <div class="btn-part">
+                                        <div type="button" class="btn btn-primary"
+                                            (click)="handleScrollToPart('part'+allQuestionPart.partInfo.id)">
+                                            {{allQuestionPart.partInfo.name.toUpperCase()}}</div>
+                                    </div>
+                                </div>
+                                <div class="select-question">
+                                    <button *ngFor="let question of allQuestionPart.questions; let i = index"
+                                        class="question-button btn btn-light"
+                                        (click)="handleScrollToPart('question'+question.id)" [ngStyle]="{'background-color': handleCheckAnswerSelected(question.id) ? '#007aff' : 'none',
+                                         'color': handleCheckAnswerSelected(question.id) ? 'white' : '#777777'
+                                            }" [ngClass]="{
+                                                'answer-red': question.isTrue === false,
+                                                'answer-green': question.isTrue==true,
+                                                'answer-yellow': question.isTrue === null 
+
+                                            }">
+                                        {{question.number}}
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container my-5 p-5 bg-white shadow rounded" *ngIf="!showResultModal">
+    <div class="row mb-4">
+        <div class="col text-center">
+            <h2>Congratulations</h2>
+            <div class="timers">
+                <i class="fa-solid fa-clock"></i>
+                <strong>01:13:42</strong>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-4 text-center">
+            <div class="profile-pic">
+                <!-- <span class="icon-user">&#128100;</span> -->
+                <img [src]="baseUrl+userCurrent.avatarUrl? baseUrl+userCurrent.avatarUrl:' https://img2.thuthuatphanmem.vn/uploads/2018/11/30/anh-dai-dien-anime-dep_104204759.jpg' "
+                    class="rounded-circle me-2" alt="Avatar" style="width: 100%; height: 100%;">
+            </div>
+            <div class="mt-3">
+                <p>Name<br><strong>{{userCurrent.name}}</strong></p>
+                <p>Attempt<br><strong>1</strong></p>
+                <p>Test Date<br><strong>2024/05/18</strong></p>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="score-board">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="score-item pe-4">
+                        <h5>Listening</h5>
+                        <div class="score-progress">
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-success" role="progressbar"
+                                     [attr.aria-valuenow]="examResult.numberCorrectListeningAnswers"
+                                     [style.width]="examResult.numberCorrectListeningAnswers + '%'"
+                                     aria-valuemin="0" aria-valuemax="100">{{ examResult.numberCorrectListeningAnswers }}</div>
+                            </div>
+                            <span class="score-total mt-2">{{ examResult.numberCorrectListeningAnswers }}/100</span>
+                        </div>
+                        
+                    </div>
+                    <div class="score-details">
+                        <span class="score-points">{{examResult.listeningToeicScore}}</span>
+                        <span class="score-max">/495</span>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div class="score-item pe-4">
+                        <h5>Reading</h5>
+                        <div class="score-progress">
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-success" role="progressbar"
+                                    [attr.aria-valuenow]="examResult.numberCorrectReadingAnswers"
+                                    [style.width]="examResult.numberCorrectReadingAnswers + '%'" aria-valuemin="0"
+                                    aria-valuemax="100">{{ examResult.numberCorrectReadingAnswers }}</div>
+                            </div>
+                            <span class="score-total mt-2">{{ examResult.numberCorrectReadingAnswers }}/100</span>
+                        </div>
+
+                    </div>
+                    <div class="score-details">
+                        <span class="score-points">{{examResult.readingToeicScore}}</span>
+                        <span class="score-max">/495</span>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="total-score">
+                        {{examResult.totalToeicScore}}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row text-center mt-4">
+        <div class="col">
+            <button type="button" class="btn btn-primary me-2" [routerLink]="['/toeic/detail-toeic', examResult.examToeicId]">Try Again</button>
+            <button type="button" class="btn btn-secondary me-2"(click)="closeModal()" >Review</button>
+            <button type="button" class="btn btn-success" routerLink="/">Next Test</button>
+        </div>
+    </div>
+</div>

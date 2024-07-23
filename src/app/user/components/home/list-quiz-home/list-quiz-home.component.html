@@ -1,0 +1,46 @@
+<div class="container mt-4">
+    <div class="row">
+        <a class="col-md-3 mb-3 a-custom" 
+            [routerLink]="['/quiz/test-quiz']">
+            <div class="card card-custom">
+                <div class="card-top" [style.background]="unlimitedQuiz.color">{{unlimitedQuiz.title}}®</div>
+                <div class="card-bottom">
+                    <div class="item py-2 ">
+                        <i class="fa-solid fa-d"></i>
+                        <span>Mô tả tranh</span>
+                    </div>
+                    <div class="item py-2">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>{{unlimitedQuiz.duration}}</span>
+                    </div>
+                    <div class="item py-2">
+                        <i class="fa-solid fa-circle-question"></i>
+                        <span>Không giới hạn câu hỏi</span>
+                    </div>
+                    <div class="item py-2">
+                        <i class="fa-solid fa-list-ol"></i>
+                        <span>Luyện tập vui</span>
+                    </div>
+                    <div class="item py-2">
+                        <i class="fa-solid fa-eye"></i>
+                        <span>{{unlimitedQuiz.view}} lượt xem</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="card-footer-progress">
+                        <progress class="progress" max="26" value="0"></progress>
+                    </div>
+                    <div class="number-testing">
+                        <span class="total">0/10000</span>
+                        <span class="text">bài hoàn thành
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="row px-5">
+        <button class="btn btn-outline-primary" routerLink="/toeic">Xem thêm</button>
+    </div>
+    
+</div>

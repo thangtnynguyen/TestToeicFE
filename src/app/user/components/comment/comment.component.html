@@ -1,0 +1,28 @@
+<div class="comment-main-level">
+	<div class="comment-avatar"><img
+			src="{{  App.baseApiUrl + comment.user.avatarUrl || 'https://img2.thuthuatphanmem.vn/uploads/2018/11/30/anh-dai-dien-anime-dep_104204759.jpg' }}"
+			alt=""></div>
+	<div class="comment-box">
+		<div class="comment-head">
+			<h6 class="comment-name by-author"><a href="http://creaticode.com/blog">{{comment.userName}}</a></h6>
+			<span>20 minutes ago</span>
+			<i class="fa fa-heart"></i>
+			<i class="fa fa-reply" (click)="toggleReply(comment.id)"></i>
+		</div>
+		<div class="comment-content">
+			{{comment.content}}
+		</div>
+		<div *ngIf="comment.isReplying" class="mt-2">
+			<div class="input-group">
+				<input type="text" class="form-control" [(ngModel)]="comment.replyText"
+					placeholder="Enter your reply comment .....">
+				<button class="btn btn-secondary" (click)="sendReply(comment)">Send</button>
+			</div>
+		</div>
+	</div>
+</div>
+<ul *ngIf="comment.children && comment.children.length" class="comments-list reply-list">
+	<li *ngFor="let child of comment.children">
+		<app-comment [comment]="child" [comments]="comment.children"   (messageEvent)="sendMessage()"></app-comment>
+	</li>
+</ul>

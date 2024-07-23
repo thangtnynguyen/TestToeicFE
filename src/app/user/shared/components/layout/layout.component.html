@@ -1,0 +1,10 @@
+<app-header *ngIf="isShowHeader()"></app-header>
+
+<div id="main" class="main-app">
+	<!-- <app-sidebar *ngIf="isShowHeader()" class="sidebar"></app-sidebar> -->
+	<div class="main-content">
+		<router-outlet></router-outlet>
+	</div>
+</div>
+
+<app-footer id="footer" *ngIf="isShowHeader()"></app-footer>

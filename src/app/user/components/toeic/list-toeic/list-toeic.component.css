@@ -1,0 +1,248 @@
+.back-color {
+    background-color: #f8f9fa !important;
+}
+
+.fs-8 {
+    font-size: 0.75rem;
+}
+.fs-7 {
+    font-size: 0.9rem;
+}
+.back-color {
+    background-color: #f8f9fa !important;
+}
+
+.fs-8 {
+    font-size: 0.75rem;
+}
+
+.fs-7 {
+    font-size: 0.9rem;
+}
+
+.custom-cate{
+    font-size: 14px;
+    font-weight: 800;
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+
+.a-custom {
+    text-decoration: none;
+}
+
+.card-custom {
+    border: none;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    border-radius: 20px;
+}
+
+.card-custom:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-top {
+    padding: 20px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.card-bottom {
+    padding: 20px;
+    background-color: #fff;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fa-solid {
+    color: #FF8159;
+}
+
+
+
+.card-footer {
+    padding: 10px;
+    background-color: #fff;
+}
+
+.card-footer-progress {
+    margin-bottom: 5px;
+}
+
+.progress {
+    width: 100%;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+}
+
+.progress::-webkit-progress-bar {
+    background-color: #e0e0e0;
+    border-radius: 10px;
+}
+
+.progress::-webkit-progress-value {
+    background-color: #4caf50;
+    border-radius: 10px;
+}
+
+.progress::-moz-progress-bar {
+    background-color: #4caf50;
+    border-radius: 10px;
+}
+
+.number-testing {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total {
+    font-weight: bold;
+    color: #4caf50;
+}
+
+.text {
+    font-size: 12px;
+    color: #666;
+}
+
+.h1-custom {
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 53px;
+    margin: 0;
+}
+
+.button-group .btn {
+    position: relative;
+    transition: all 0.3s;
+    background-color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+}
+
+.button-group {
+    background-color: #ffffff !important;
+    padding: 10px 50px !important;
+}
+
+.button-group .btn:hover,
+.button-group .btn:focus,
+.button-group .btn.active {
+    background-color: #ffffff;
+    /* box-shadow: 0px 4px 8px rgba(0,0,0,0.1); */
+    color: #ff4500;
+}
+
+.button-group .btn.active::after,
+.button-group .btn:hover::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    height: 3px;
+    background-color: #ff4500;
+    border-radius: 2px;
+}
+
+.hr-custom {
+    width: 10%;
+    border: 2px solid rgb(29, 211, 208);
+    border-radius: 10px;
+}
+
+
+
+.hero-section {
+    position: relative;
+    background-color: #ffffff;
+    padding: 50px 0;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 40px;
+}
+
+.img-background {
+    position: absolute;
+    width: auto;
+}
+
+.img-hat {
+    top: 5%;
+    left: 5%;
+    width: 100px;
+}
+
+.img-earth {
+    top: 5%;
+    right: 5%;
+    width: 100px;
+}
+
+.img-note {
+    bottom: 5%;
+    left: 5%;
+    width: 100px;
+}
+
+.btn-custom {
+    border-radius: 20px;
+    padding: 10px 30px;
+    margin-right: 10px;
+    /* Space between buttons */
+}
+.span-custom{
+    color: #ff4500;
+    font-weight: 1000;
+}
+
+.btn-custom {
+    background-color: white; 
+    color: black;
+    border: 2px solid black; 
+    border-radius: 20px; 
+    padding: 8px 20px; 
+    font-weight:1000 ; 
+    transition: all 0.3s; 
+    font-family: sans-serif SVN-Poppins ;
+}
+
+.btn-custom:hover, .btn-custom:focus {
+    background-color: #e6e6e6; 
+    color: black; 
+    border-color: #333; 
+}
+
+.card-custom {
+    position: relative; 
+}
+
+.continue-btn {
+    position: absolute;
+    top: 80px;
+    right: 10px; 
+    background-color: #007bff; 
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+}

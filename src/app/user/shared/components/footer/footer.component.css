@@ -1,0 +1,50 @@
+/* footer {
+    background-color: #f8f9fa;
+    color: #6c757d;
+}
+
+footer a {
+    color: #007bff;
+}
+
+footer a:hover {
+    color: #0056b3;
+} */
+
+
+.footer {
+    background-color: #f8f9fa;
+    padding: 50px 0;
+    color: #666;
+    font-size: 14px;
+    min-height: 400px;
+}
+.footer .col {
+    text-align: center;
+}
+.footer h6 {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.footer a {
+    color: #666;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: block;
+}
+.footer a:hover {
+    color: #333;
+}
+.social-icons a {
+    font-size: 24px;
+    margin: 0 10px;
+    color: #666;
+}
+.social-icons a:hover {
+    color: #007bff;
+}
+.bg-silhouette {
+    background: url('https://estudyme.com/_next/image/?url=%2Fimages%2Fapp%2Ftoeic%2Fbg-footer.png&w=1920&q=100') no-repeat center bottom;
+    background-size: cover;
+    height: 150px; /* Adjust based on your image */
+}

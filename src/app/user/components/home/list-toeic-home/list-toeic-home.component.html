@@ -1,0 +1,47 @@
+<div class="container mt-4">
+    <div class="row">
+        <a class="col-md-3 mb-3 a-custom" *ngFor="let examToeic of examToeics"
+            [routerLink]="['/toeic/detail-toeic', examToeic.id]">
+            <div class="card card-custom">
+                <div class="card-top" [style.background]="examToeic.color">{{examToeic.title}}®</div>
+                <div class="card-bottom">
+                    <div class="item py-2 ">
+                        <i class="fa-solid fa-d"></i>
+                        <span>{{ examToeic.description | slice:0:20 }}...</span>
+                    </div>
+                    <div class="item py-2">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>{{examToeic.duration}}</span>
+                    </div>
+                    <div class="item py-2">
+                        <i class="fa-solid fa-circle-question"></i>
+                        <span>200 câu hỏi</span>
+                    </div>
+                    <div class="item py-2">
+                        <i class="fa-solid fa-list-ol"></i>
+                        <span>7 part</span>
+                    </div>
+                    <div class="item py-2">
+                        <i class="fa-solid fa-eye"></i>
+                        <span>{{examToeic.view}} lượt xem</span>
+                    </div>
+                    <div *ngIf="examToeic.isTest" class="continue-btn">Continue</div>
+                </div>
+                <div class="card-footer">
+                    <div class="card-footer-progress">
+                        <progress class="progress" max="26" value="0"></progress>
+                    </div>
+                    <div class="number-testing">
+                        <span class="total">{{examToeic.questionTesting?examToeic.questionTesting:0}}/200</span>
+                        <span class="text">bài hoàn thành
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="row px-5">
+        <button class="btn btn-outline-primary" routerLink="/toeic">Xem thêm</button>
+    </div>
+
+</div>

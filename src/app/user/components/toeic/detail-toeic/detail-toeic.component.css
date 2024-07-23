@@ -1,0 +1,69 @@
+strong{
+    font-size: 30px;
+    
+}
+.btn-primary {
+    margin-top: 30px;
+}
+
+.carousel-item img {
+    height: 300px;
+    object-fit: cover;
+    padding: 5px;
+    border-radius: 15px;
+}
+
+.carousel-item {
+    border-radius: 15px;
+
+}
+.image-info img{
+    margin-top: 30px;
+    width: 100%;
+    border-radius: 15px;
+    padding: 5px;
+
+}
+.card{
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+.input-group{
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.form-control{
+    border: none;
+
+}
+
+
+.highlight-text {
+    font-weight: bold;
+}
+
+.list-group-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+}
+
+.list-group-item:hover {
+    background-color: #f0f0f0;
+}
+
+.custom-btn {
+    border: 2px solid #007bff;
+    background-color: transparent;
+    color: #007bff;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.custom-btn:hover {
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+}

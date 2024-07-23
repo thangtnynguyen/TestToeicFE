@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0">Thêm câu hỏi import</h4>
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li routerLink="/admin/dashboard" class="breadcrumb-item d-flex align-items-center">
+                        <span>Trang chủ</span>
+                        <i class="breadcrumb-item-arrow fa-solid fa-angle-right"></i>
+                    </li>
+                    <li class="breadcrumb-item d-flex align-items-center" routerLink="/admin/exam">
+                        <span>Quản lý câu hỏi</span>
+                        <i class="breadcrumb-item-arrow fa-solid fa-angle-right"></i>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        <span>Thêm câu hỏi import</span>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="block-content tab-content">
+       <div id="form-upload" method="POST" enctype="multipart/form-data">
+          <div class="mb-4">
+              <label class="form-label" for="js-ckeditor">Nội dung</label>
+              <input (change)="onFileSelected($event)" class="form-control" type="file" id="file-cau-hoi" accept=".xlsx, .xls, .csv" required="">
+          </div>
+          <div class="mb-4">
+              <em>Vui lòng soạn câu hỏi  theo đúng định dạng. <a href="../../../../../assets/files/sample_question_import_template.xlsx">Tải về file mẫu Excel</a></em>
+          </div>
+          <div class="form-group">
+            <div class="row">
+                <label class="col-md-3 col-lg-3 col-form-label" for="folder">File Audio,Hình ảnh </label>
+                <div class="col-md-9 col-lg-8 col-table-reponsive p-0 relative">
+                    <input (change)="onFileChange($event)" class="form-control" type="file" id="folder"
+                        name="folder" webkitdirectory multiple>
+                </div>
+            </div>
+        </div>
+          <div class="mb-4 d-flex justify-content-between">
+              <button (click)="handleImportQuestionGroupModule()" type="submit" class="btn btn-hero btn-primary" id="nhap-file"><i class="fa fa-cloud-arrow-up"></i> Thêm vào hệ thống</button>
+          </div>
+       </div>
+    </div>
+  </div>
